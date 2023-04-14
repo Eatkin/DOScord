@@ -6,6 +6,7 @@ body {
     font-size: 24px;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 /* Classes */
@@ -57,6 +58,13 @@ body {
 
 .Chat {
     grid-area: Chat;
+    max-height: 92.5%;
+    overflow-y: scroll;
+}
+
+.Chat p {
+    margin: 0.2em 0;
+    padding: 0;
 }
 
 .Members {
@@ -69,4 +77,21 @@ body {
 
 .Header-2 {
     grid-area: Header-2;
+}
+
+/* Set users to WIN16 colours */
+.drive-a {
+    color: #0000FF;
+}
+
+.drive-b {
+    color: #FF0000;
+}
+
+.drive-c {
+    color: #00FF00;
+}
+
+.drive-d {
+    color: #FFFF00;
 }
