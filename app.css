@@ -1,0 +1,72 @@
+/* Give the page a DOS look */
+body {
+    background-color: #282828;
+    color: #FFF;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Classes */
+.server-icon {
+    background: #000082;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin: 5px;
+    /*transition border radius*/
+    transition: border-radius 0.5s;
+    padding-top: 3px;
+}
+
+.server-icon:hover {
+    cursor: pointer;
+    border-radius: 20%;
+}
+
+.server-icon-container {
+    border-bottom: 3px solid #FFF;
+}
+
+/* CSS Grid layout */
+
+.container {
+    display: grid;
+    grid-template-columns: 0.2fr 0.6fr 2.6fr 0.6fr;
+    grid-template-rows: 0.3fr 1.7fr 0.6fr 1.4fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "Servers Header-1 Header-2 Header-2"
+        "Servers Channels Chat Members"
+        "Servers Channels Chat Members"
+        "Servers Channels Chat Members";
+}
+
+.Servers {
+    grid-area: Servers;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Channels {
+    grid-area: Channels;
+}
+
+.Chat {
+    grid-area: Chat;
+}
+
+.Members {
+    grid-area: Members;
+}
+
+.Header-1 {
+    grid-area: Header-1;
+}
+
+.Header-2 {
+    grid-area: Header-2;
+}
