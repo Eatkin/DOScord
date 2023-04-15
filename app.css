@@ -45,37 +45,37 @@ body {
         "Servers Channels Chat Members";
 }
 
-.Servers {
+#Servers {
     grid-area: Servers;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.Channels {
+#Channels {
     grid-area: Channels;
 }
 
-.Chat {
+#Chat {
     grid-area: Chat;
     max-height: 92.5%;
     overflow-y: scroll;
 }
 
-.Chat p {
+#Chat p {
     margin: 0.2em 0;
     padding: 0;
 }
 
-.Members {
+#Members {
     grid-area: Members;
 }
 
-.Header-1 {
+#Header-1 {
     grid-area: Header-1;
 }
 
-.Header-2 {
+#Header-2 {
     grid-area: Header-2;
 }
 
