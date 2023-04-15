@@ -1,0 +1,81 @@
+{
+    "Servers": [
+    {
+        "name": "Radiobush",
+        "image": "assets/img/radiobush.png",
+        "channels": [
+          {
+            "name": "General",
+            "chat": [
+              {
+                "user": "John",
+                "message": "Hello world!"
+              },
+              {
+                "user": "Sarah",
+                "message": "Hi there!"
+              }
+            ]
+          },
+          {
+            "name": "Announcements",
+            "chat": [
+              {
+                "user": "Admin",
+                "message": "Welcome to our server!"
+              }
+            ]
+          }
+        ],
+        "users": [
+          {
+            "name": "John",
+            "status": "online"
+          },
+          {
+            "name": "Sarah",
+            "status": "offline"
+          }
+        ]
+    },
+
+    {
+      "name": "&#x1F171;ad games with Adrien",
+      "image": "assets/img/bad-games-with-adrien.png",
+        "channels": [
+            {
+            "name": "General",
+            "chat": [
+                {
+                "user": "John",
+                "message": "Hello world!"
+                },
+                {
+                "user": "Sarah",
+                "message": "Hi there!"
+                }
+            ]
+            },
+            {
+            "name": "Announcements",
+            "chat": [
+                {
+                "user": "Admin",
+                "message": "Welcome to our server!"
+                }
+            ]
+            }
+        ],
+        "users": [
+            {
+            "name": "John",
+            "status": "online"
+            },
+            {
+            "name": "Sarah",
+            "status": "offline"
+            }
+        ]
+    }
+]
+}
