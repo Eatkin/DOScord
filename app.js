@@ -6,7 +6,7 @@ function loadServers() {
         })
         .then(function(data) {
             // This will get the servers from data.json
-            var servers = data.servers;
+            var servers = data.Servers;
             // Add the top server icon, which is the logo
             var output = `
                         <div class="server-icon-container">
