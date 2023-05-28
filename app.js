@@ -1,5 +1,4 @@
 function loadServers() {
-    // This will get the servers from data.json
     fetch('assets/json/data.json')
         .then(function (response) {
             return response.json();
@@ -9,20 +8,19 @@ function loadServers() {
             let servers = data.Servers;
             // Add the top server icon, which is the logo
             let output = `
-                        <div class="server-icon-container">
-                            <img src="assets/img/DOScord-server-icon.png" class="server-icon" alt="DOScord logo">
-                        </div>
-                        `;
+                <div class="server-icon-container">
+                    <img src="assets/img/DOScord-server-icon.png" class="server-icon" alt="DOScord logo">
+                </div>
+                `;
 
             // Add remaining servers in the format <img src=server[i].image class="server-icon" alt=server[i].name>
             for (let server in servers) {
                 output += `
-                        <img src="${servers[server].image}" data="${servers[server].name}" class="server-icon" alt="${servers[server].name} ">
-        `;
+                    <img src="${servers[server].image}" data="${servers[server].name}" class="server-icon" alt="${servers[server].name} ">
+                    `;
             }
             document.getElementById('Servers').innerHTML = output;
-        })
-        .catch(error => console.error(error));
+        });
 }
 
 function addServerListeners() {
@@ -30,8 +28,6 @@ function addServerListeners() {
     document.getElementById('Servers').addEventListener('click', function (e) {
         // If the click target is a server icon
         if (e.target.classList.contains('server-icon')) {
-
-            // Find the server data in data.json
             fetch('assets/json/data.json')
                 .then(function (response) {
                     return response.json();
@@ -40,33 +36,34 @@ function addServerListeners() {
                     let servers = data.Servers;
                     for (let server in servers) {
                         if (servers[server].name === e.target.getAttribute('data')) {
-                            // Add the server name to the title
-                            currentServer = servers[server].name;
-                            document.getElementById('Server-Name').innerHTML = currentServer;
-                            // Set the channel name to the first channel in the server
-                            currentChannel = servers[server].channels[0].name;
-                            document.getElementById('Channel-Name').innerHTML = currentChannel;
-                            // Load the chat messages from the first channel in the server
-                            let chat = servers[server].channels[0].chat;
-                            // Add the chat messages to the chat window
-                            let output = '';
-                            for (let message in chat) {
-                                output += `<p><span class="chat-username">${chat[message].user}</span><br>${chat[message].message}</p>`;
-                            }
-                            document.getElementById('Chat').innerHTML = output;
-
-                            // Add the channel names to the channel list
-                            let channelOutput = '';
-                            for (let channel in servers[server].channels) {
-                                channelName = servers[server].channels[channel].name;
-                                channelOutput += `<li class="channel-item" data="${channelName}">#${channelName}</li>`;
-                            }
-                            document.getElementById('Channels').innerHTML = channelOutput;
+                            loadServer(servers[server]);
                         }
                     }
-                })
+                });
         }
     });
+}
+
+function loadServer(server) {
+    // Add the server name to the title
+    currentServer = server.name;
+    document.getElementById('Server-Name').innerHTML = currentServer;
+
+    // Set the channel name to the first channel in the server
+    currentChannel = server.channels[0].name;
+    document.getElementById('Channel-Name').innerHTML = currentChannel;
+
+    // Load the chat messages from the first channel in the server
+    let chat = server.channels[0].chat;
+    parseChat(chat);
+
+    // Add the channel names to the channel list
+    let channelOutput = '';
+    for (let channel in server.channels) {
+        channelName = server.channels[channel].name;
+        channelOutput += `<li class="channel-item" data="${channelName}">#${channelName}</li>`;
+    }
+    document.getElementById('Channels').innerHTML = channelOutput;
 }
 
 function addChannelListeners() {
@@ -82,37 +79,61 @@ function addChannelListeners() {
             fetch('assets/json/data.json')
                 .then(function (response) {
                     return response.json();
-                }
-                )
+                })
                 .then(function (data) {
-                    // Load the chat messages from the currentChannel
-                    // Find the data that matches currentChannel
                     let servers = data.Servers;
-                    let chat;
                     for (let server in servers) {
                         if (servers[server].name === currentServer) {
                             for (let channel in servers[server].channels) {
                                 if (servers[server].channels[channel].name === currentChannel) {
-                                    chat = servers[server].channels[channel].chat;
+                                    let chat = servers[server].channels[channel].chat;
+                                    parseChat(chat);
+                                    break;
                                 }
                             }
                         }
                     }
-                    // Add the chat messages to the chat window
-                    let output = '';
-                    for (let message in chat) {
-                        output += `<p><span class="chat-username">${chat[message].user}</span><br>${chat[message].message}</p>`;
-                    }
-                    document.getElementById('Chat').innerHTML = output;
                 });
-        };
+        }
     });
 }
 
+function findChat(serverName, channelName) {
+    return fetch('assets/json/data.json')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            let servers = data.Servers;
+            for (let server in servers) {
+                if (servers[server].name === serverName) {
+                    for (let channel in servers[server].channels) {
+                        if (servers[server].channels[channel].name === channelName) {
+                            return servers[server].channels[channel].chat;
+                        }
+                    }
+                }
+            }
+        });
+}
+
+function parseChat(chat) {
+    // Add the chat messages to the chat window
+    console.log("Hi, we're in parseChat");
+    console.log(chat);
+    let output = '';
+    for (let message in chat) {
+        output += `<p><span class="chat-username">${chat[message].user}</span><br>${chat[message].message}</p>`;
+    }
+    document.getElementById('Chat').innerHTML = output;
+}
+
+// Globally accessible variables
+let currentServer = 'DOScord';
+let currentChannel = NaN;
+
 // Things to do on page load
 window.onload = function () {
-    let currentServer = 'DOScord';
-    let currentChannel = NaN;
     loadServers();
     addServerListeners();
     addChannelListeners();
