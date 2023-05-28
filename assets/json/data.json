@@ -1,81 +1,80 @@
 {
-    "Servers": [
+  "Servers": [
     {
-        "name": "Radiobush",
-        "image": "assets/img/radiobush.png",
-        "channels": [
-          {
-            "name": "General",
-            "chat": [
-              {
-                "user": "John",
-                "message": "Hello world!"
-              },
-              {
-                "user": "Sarah",
-                "message": "Hi there!"
-              }
-            ]
-          },
-          {
-            "name": "Announcements",
-            "chat": [
-              {
-                "user": "Admin",
-                "message": "Welcome to our server!"
-              }
-            ]
-          }
-        ],
-        "users": [
-          {
-            "name": "John",
-            "status": "online"
-          },
-          {
-            "name": "Sarah",
-            "status": "offline"
-          }
-        ]
+      "name": "Radiobush",
+      "image": "assets/img/radiobush.png",
+      "channels": [
+        {
+          "name": "General",
+          "chat": [
+            {
+              "user": "John",
+              "message": "Hello world!"
+            },
+            {
+              "user": "Sarah",
+              "message": "Hi there!"
+            }
+          ]
+        },
+        {
+          "name": "Announcements",
+          "chat": [
+            {
+              "user": "Admin",
+              "message": "Welcome to our server!"
+            }
+          ]
+        }
+      ],
+      "users": [
+        {
+          "name": "John",
+          "status": "online"
+        },
+        {
+          "name": "Sarah",
+          "status": "offline"
+        }
+      ]
     },
-
     {
-      "name": "&#x1F171;ad games with Adrien",
+      "name": "Bad games with Adrien",
       "image": "assets/img/bad-games-with-adrien.png",
-        "channels": [
+      "channels": [
+        {
+          "name": "General",
+          "chat": [
             {
-            "name": "General",
-            "chat": [
-                {
-                "user": "John",
-                "message": "Hello world!"
-                },
-                {
-                "user": "Sarah",
-                "message": "Hi there!"
-                }
-            ]
+              "user": "John",
+              "message": "Hello world!"
             },
             {
-            "name": "Announcements",
-            "chat": [
-                {
-                "user": "Admin",
-                "message": "Welcome to our server!"
-                }
-            ]
+              "user": "Sarah",
+              "message": "Hi there!"
             }
-        ],
-        "users": [
+          ]
+        },
+        {
+          "name": "Announcements",
+          "chat": [
             {
-            "name": "John",
-            "status": "online"
-            },
-            {
-            "name": "Sarah",
-            "status": "offline"
+              "user": "Admin",
+              "message": "Welcome to our server!"
             }
-        ]
+          ]
+        }
+      ],
+      "users": [
+        {
+          "name": "John",
+          "status": "online"
+        },
+        {
+          "name": "Sarah",
+          "status": "offline"
+        }
+      ]
     }
-]
+  ]
 }

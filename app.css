@@ -71,11 +71,11 @@ body {
     grid-area: Members;
 }
 
-#Header-1 {
+#Server-Name {
     grid-area: Header-1;
 }
 
-#Header-2 {
+#Channel-Name {
     grid-area: Header-2;
 }
 
