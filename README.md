@@ -16,6 +16,6 @@ DOScord sources its data from the [data.json](https://github.com/Eatkin/DOScord/
 
 DOScord is created with desktop usage in mind. It uses CSS grid so the layout is responsive, but also basically unusable on smaller screens.
 
-To view DOScord, simple visit the [GitHub Pages website](link-here) where the project is hosted.
+To view DOScord, simple visit the [GitHub Pages website](https://eatkin.github.io/DOScord/) where the project is hosted.
 
 To run this locally, I recommend using the [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) with VS Code.
