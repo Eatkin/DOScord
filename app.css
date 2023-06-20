@@ -30,16 +30,24 @@ body {
     border-bottom: 3px solid #FFF;
 }
 
+.member {
+    list-style-type: none;
+}
+
+.member-status {
+    margin-left: 10px;
+}
+
 /* CSS Grid layout */
 
 .container {
     display: grid;
     grid-template-columns: 0.2fr 0.6fr 2.6fr 0.6fr;
-    grid-template-rows: 0.3fr 1.7fr 0.6fr 1.4fr;
+    grid-template-rows: 50px 100% 0.6fr 1.4fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
-        "Servers Header-1 Header-2 Header-2"
+        "Servers Header-1 Header-2 Members"
         "Servers Channels Chat Members"
         "Servers Channels Chat Members"
         "Servers Channels Chat Members";
@@ -59,6 +67,10 @@ body {
 #Chat {
     grid-area: Chat;
     max-height: 92.5%;
+    overflow-y: none;
+}
+
+#Chat.scroll {
     overflow-y: scroll;
 }
 
@@ -73,6 +85,7 @@ body {
 
 #Server-Name {
     grid-area: Header-1;
+    font-weight: bold;
 }
 
 #Channel-Name {
@@ -82,6 +95,7 @@ body {
 .channel-item {
     list-style-type: none;
     cursor: auto;
+    padding: 0.2em 0;
 }
 
 .channel-item.active {
@@ -91,21 +105,4 @@ body {
 .channel-item:hover {
     cursor: pointer;
     background-color: #0000FF;
-}
-
-/* Set users to WIN16 colours */
-.drive-a {
-    color: #0000FF;
-}
-
-.drive-b {
-    color: #FF0000;
-}
-
-.drive-c {
-    color: #00FF00;
-}
-
-.drive-d {
-    color: #FFFF00;
 }
