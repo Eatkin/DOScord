@@ -128,6 +128,12 @@ function parseChat(chat) {
     document.getElementById('Chat').innerHTML = output;
 }
 
+import data from './assets/json/data.json' assert { type: "json" };
+
+console.log("Hi, we're in app.js");
+console.log(data);
+console.log("Did it work?");
+
 // Globally accessible variables
 let currentServer = 'DOScord';
 let currentChannel = NaN;
