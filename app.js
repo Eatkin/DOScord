@@ -1,26 +1,19 @@
 function loadServers() {
-    fetch('assets/json/data.json')
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            // This will get the servers from data.json
-            let servers = data.Servers;
-            // Add the top server icon, which is the logo
-            let output = `
+    let servers = data.Servers;
+    // Add the top server icon, which is the logo
+    let output = `
                 <div class="server-icon-container">
                     <img src="assets/img/DOScord-server-icon.png" class="server-icon" alt="DOScord logo">
                 </div>
                 `;
 
-            // Add remaining servers in the format <img src=server[i].image class="server-icon" alt=server[i].name>
-            for (let server in servers) {
-                output += `
+    // Add remaining servers in the format <img src=server[i].image class="server-icon" alt=server[i].name>
+    for (let server in servers) {
+        output += `
                     <img src="${servers[server].image}" data="${servers[server].name}" class="server-icon" alt="${servers[server].name} ">
                     `;
-            }
-            document.getElementById('Servers').innerHTML = output;
-        });
+    }
+    document.getElementById('Servers').innerHTML = output;
 }
 
 function addServerListeners() {
@@ -28,18 +21,12 @@ function addServerListeners() {
     document.getElementById('Servers').addEventListener('click', function (e) {
         // If the click target is a server icon
         if (e.target.classList.contains('server-icon')) {
-            fetch('assets/json/data.json')
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    let servers = data.Servers;
-                    for (let server in servers) {
-                        if (servers[server].name === e.target.getAttribute('data')) {
-                            loadServer(servers[server]);
-                        }
-                    }
-                });
+            let servers = data.Servers;
+            for (let server in servers) {
+                if (servers[server].name === e.target.getAttribute('data')) {
+                    loadServer(servers[server]);
+                }
+            }
         }
     });
 }
@@ -60,8 +47,9 @@ function loadServer(server) {
     // Add the channel names to the channel list
     let channelOutput = '';
     for (let channel in server.channels) {
-        channelName = server.channels[channel].name;
-        channelOutput += `<li class="channel-item" data="${channelName}">#${channelName}</li>`;
+        let channelName = server.channels[channel].name;
+        let classes = (channelName === currentChannel) ? 'channel-item active' : 'channel-item';
+        channelOutput += `<li class="${classes}" data="${channelName}">#${channelName}</li>`;
     }
     document.getElementById('Channels').innerHTML = channelOutput;
 }
@@ -76,51 +64,45 @@ function addChannelListeners() {
             currentChannel = channelName;
             document.getElementById('Channel-Name').innerHTML = currentChannel;
             // Load the chat messages from the clicked channel
-            fetch('assets/json/data.json')
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    let servers = data.Servers;
-                    for (let server in servers) {
-                        if (servers[server].name === currentServer) {
-                            for (let channel in servers[server].channels) {
-                                if (servers[server].channels[channel].name === currentChannel) {
-                                    let chat = servers[server].channels[channel].chat;
-                                    parseChat(chat);
-                                    break;
-                                }
-                            }
+            let servers = data.Servers;
+            for (let server in servers) {
+                if (servers[server].name === currentServer) {
+                    for (let channel in servers[server].channels) {
+                        if (servers[server].channels[channel].name === currentChannel) {
+                            let chat = servers[server].channels[channel].chat;
+                            parseChat(chat);
+                            break;
                         }
                     }
-                });
+                }
+            }
+
+            // Now set the clicked channel to active and the rest to inactive
+            let channels = document.getElementsByClassName('channel-item');
+            for (let channel of channels) {
+                channel.classList.remove('active');
+            }
+            e.target.classList.add('active');
         }
     });
 }
 
 function findChat(serverName, channelName) {
-    return fetch('assets/json/data.json')
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            let servers = data.Servers;
-            for (let server in servers) {
-                if (servers[server].name === serverName) {
-                    for (let channel in servers[server].channels) {
-                        if (servers[server].channels[channel].name === channelName) {
-                            return servers[server].channels[channel].chat;
-                        }
-                    }
+    let servers = data.Servers;
+    // Awful nested for loop to find the chat
+    for (let server in servers) {
+        if (servers[server].name === serverName) {
+            for (let channel in servers[server].channels) {
+                if (servers[server].channels[channel].name === channelName) {
+                    return servers[server].channels[channel].chat;
                 }
             }
-        });
+        }
+    }
 }
 
 function parseChat(chat) {
     // Add the chat messages to the chat window
-    console.log("Hi, we're in parseChat");
-    console.log(chat);
     let output = '';
     for (let message in chat) {
         output += `<p><span class="chat-username">${chat[message].user}</span><br>${chat[message].message}</p>`;
@@ -128,11 +110,8 @@ function parseChat(chat) {
     document.getElementById('Chat').innerHTML = output;
 }
 
+// Import data from data.json
 import data from './assets/json/data.json' assert { type: "json" };
-
-console.log("Hi, we're in app.js");
-console.log(data);
-console.log("Did it work?");
 
 // Globally accessible variables
 let currentServer = 'DOScord';

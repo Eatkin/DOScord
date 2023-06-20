@@ -79,6 +79,20 @@ body {
     grid-area: Header-2;
 }
 
+.channel-item {
+    list-style-type: none;
+    cursor: auto;
+}
+
+.channel-item.active {
+    background-color: #000082;
+}
+
+.channel-item:hover {
+    cursor: pointer;
+    background-color: #0000FF;
+}
+
 /* Set users to WIN16 colours */
 .drive-a {
     color: #0000FF;
