@@ -10,7 +10,7 @@ DOScord is a practice project for me to learn some front-end development and Jav
 
 It uses the Discord Server/Channel setup to give you multiple servers and channels to explore, each with their own chat and user base.
 
-DOScord sources its data from the [data.json](https://github.com/Eatkin/DOScord/blob/master/assets/json/data.json) file.
+DOScord sources its data from json stored at the top of [app.js](https://github.com/Eatkin/DOScord/blob/master/app.js) file.
 
 ## Usage
 
